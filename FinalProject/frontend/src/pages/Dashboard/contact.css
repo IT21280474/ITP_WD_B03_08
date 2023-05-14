@@ -1,0 +1,72 @@
+.about-us-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.about-us-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.about-us-page p {
+  margin-bottom: 10px;
+}
+
+.developer {
+  margin-bottom: 30px;
+}
+
+.developer:hover {
+  transform: scale(1.05);
+}
+
+.developer h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.developer p {
+  margin-bottom: 10px;
+}
+.box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-color: #2e3233;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.box:nth-child(1) {
+  background-color: #ffcccc;
+}
+
+.box:nth-child(2) {
+  background-color: #ccffcc;
+}
+
+.box:nth-child(3) {
+  background-color: #ccccff;
+}

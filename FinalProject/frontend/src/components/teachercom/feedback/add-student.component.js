@@ -4,9 +4,16 @@ import { Toaster } from 'react-hot-toast';
 import { useFormik } from 'formik';
 import { usernameValidate } from '../../../Helper/validate';
 import styles from '../../../components/Students/sudentformstyle.css'
+import { Form, Dropdown } from 'semantic-ui-react';
+const departmentOptions = [
+  { key: 'option1', value: 'IT', text: 'IT' },
+  { key: 'option2', value: 'Bisness', text: 'Bisness' },
+  { key: 'option3', value: 'Enginering', text: 'Enginering' },
+  // Add more options as needed
+];
 
 const StudentForm = () => {
-  const { dispatch } = useTeachersContext()
+  // const { dispatch } = useTeachersContext()
 {/*Username, email, password, department,gender*/}
   const [email, setEmail] = useState('')
   const [gender, setgender] = useState('')
@@ -17,6 +24,11 @@ const StudentForm = () => {
   // const [address, setAddress] = useState('')
   // const [dob, setDOB] = useState('')
   // const [mobile, setMobile] = useState('')
+  const isValidEmail = (email) => {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
   
 
 
@@ -25,7 +37,15 @@ const StudentForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
+    if (!email) {
+      setError('Please enter an email address.');
+      return;
+    }
+  
+    if (!isValidEmail(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
     const teacher = { email, Username, department,gender, password}
     
     const response = await fetch('/api/teachers', {
@@ -50,11 +70,12 @@ const StudentForm = () => {
       setDepartment('')
    
       console.log('New teacher added',json)
-      dispatch({type: 'CREATE_TEACHER', payload: json})
+      // dispatch({type: 'CREATE_TEACHER', payload: json})
     }
     
 
   }
+  
 
 
 
@@ -77,26 +98,49 @@ const StudentForm = () => {
             You can add new teacher.
           </span>
 {/* ///////////////////////////////////////////////////////////////////// */}
+<br/>
+      <label><h3>Teacher Email :</h3></label>
+      <div className='textbox flex flex-col  gap-6'>
+            <input
+              required
+              type="text"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className={emptyFields.includes('email') ? 'error':'' }
+            />
+          {email && !isValidEmail(email) && <p style={{ color: 'red', backgroundColor: '#f8d7da', padding: '5px', borderRadius: '5px' }}>Please enter a valid email address.</p>}
 
-      {/* <label>Excersize Email:</label> */}
-      <div className='textbox flex flex-col items-center gap-6 '>
-      <input required  type={'text'} placeholder='Email' onChange={(e) => setEmail(e.target.value)} 
-        value={email}
-        className={emptyFields.includes('email') ? 'error':'' }></input>
-      </div><br/>
+
+          </div><br/>
 {/* ///////////////////////////////////////////////////////////////////// */}
-
+<br/>
+      <label><h3>Teacher Username :</h3></label>
 <div className='textbox flex flex-col items-center gap-6 '>
                     <input required  type={'text'} placeholder='Username' className='textbox01' value={Username}
                      onChange={(e) => setUsername(e.target.value)}></input><br/>
               </div>
-              <div className='textbox flex flex-col items-center gap-6 '>
-              <input required  type={'text'} placeholder='department' className={ emptyFields.includes('department') ? 'error':''  } value={department} onChange={(e) => setDepartment(e.target.value)} ></input></div>
+
+
+              <br/>
+                    <label><h3>Teacher department:</h3></label>
+                    <div className='textbox flex flex-col  gap-6'>
+                <Dropdown
+                  placeholder='Select Department'
+                  selection
+                  options={departmentOptions}
+                  value={department}
+                  onChange={(e, { value }) => setDepartment(value)}
+                />
+              </div>
+
               <br/>
       
 {/* title///////////////////////////////////////////////////////////////////// */}
+<br/>
+      <label><h3>Teacher Gender:</h3></label>
               <div className='textbox flex flex-col gap-6'>
-              <label className='textbox flex flex-col  gap-6'>Gender</label>
+              {/* <label className='textbox flex flex-col  gap-6'>Gender</label> */}
               <select value={gender} 
                                                 type="text"
                                                 required
@@ -114,7 +158,7 @@ const StudentForm = () => {
               </div>
               <br/>
 {/* ////////email, firstName, department,NIC,userName,address,dob,mobile///////////////////////////////////////////////////////////// */}
-              <div className='textbox flex flex-col items-center gap-6'>
+<div className='textbox flex flex-col items-center gap-6'>
               <input  required type={'text'} placeholder='password' className='textbox01' value={password} onChange={(e) => setPassword(e.target.value)}></input>
               </div> 
               <br/>
@@ -133,6 +177,7 @@ const StudentForm = () => {
     </div>
     </>
   )
+  
 }
 
 export default StudentForm

@@ -16,14 +16,14 @@ import Studentupdate from './components/Students/editStudent'
 import Teacherupdate from './components/Teacher/teacherEdit'
 
 import Footer from './components/footer';
-import Navbar from "./components/feedbackcom/navbar/navbar.component";
+import Navbar from "./components/feedback.com/navbar/navbar.component";
 
-import AddFeedback from './components/feedbackcom/feedback/add-feedback.component';
-import FeedbackList from './components/feedbackcom/feedback/feedback-list.component.js.js';
-import EditFeedback from './components/feedbackcom/feedback/edit-feedback.component';
-import FeedbackListStudent from './components/feedbackcom/feedback/feedback-list-student.component';
-import FeedbackListAdmin from './components/feedbackcom/feedback/feedback-list-admin.component';
-import AddResponse from './components/feedbackcom/feedback/add-response.component';
+import AddFeedback from './components/feedback.com/feedback/add-feedback.component';
+import FeedbackList from './components/feedback.com/feedback/feedback-list.component.js.js';
+import EditFeedback from './components/feedback.com/feedback/edit-feedback.component';
+import FeedbackListStudent from './components/feedback.com/feedback/feedback-list-student.component';
+import FeedbackListAdmin from './components/feedback.com/feedback/feedback-list-admin.component';
+import AddResponse from './components/feedback.com/feedback/add-response.component';
 
 import AddStudent from './components/studentcom/feedback/add-student.component';
 import StudentList from './components/studentcom/feedback/feedback-list.component.js.js';
@@ -36,7 +36,7 @@ import TeacherList from './components/teachercom/feedback/feedback-list.componen
 import EditTeacher from './components/teachercom/feedback/edit-feedback.component';
 import StudentListTeacher from './components/teachercom/feedback/feedback-list-student.component';
 import TeacherListAdmin from './components/teachercom/feedback/feedback-list-admin.component';
-
+import Contacts from "../src/pages/Dashboard/contact"
 // import AddResponse from './components/feedbackcom/feedback/add-response.component';
 function App() {
   return (
@@ -44,10 +44,11 @@ function App() {
       <BrowserRouter>
 
           
-            <NavBar/>
+            {/* <NavBar/> */}
             
             <Routes> 
                <Route path="/" element={ <Home />} /> 
+               <Route path="/contact" element={ <Contacts />} /> 
               <Route path="/dashboard" element={ <Dashboard />} />
               <Route path="/students" element={ <Students />}/>
               <Route path="/teachers" element={ <Teacher />}/>
@@ -77,6 +78,7 @@ function App() {
               <Route exact path="/updateTeacher" element={<EditTeacher/> } />
               <Route exact path="/myTeacher" element={<StudentListTeacher/> } />
               <Route exact path="/adTeacher" element={<TeacherListAdmin/> } />
+
 
 
         

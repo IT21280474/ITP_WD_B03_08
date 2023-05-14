@@ -74,8 +74,8 @@ const TeachersDetails = ({ teacher }) => {
               {/* <td className='text-md px-6 py-1'>{teacher.mobile}</td> */}
               
               <td className='text-md px-6 py-1'><p>{formatDistanceToNow(new Date(teacher.createdAt), { addSuffix: true })}</p></td>
-              <td className='text-md px-6 py-1'><span  className="material-symbols-outlined span1" onClick={editClick}>edit</span></td>
-              <td className='text-md px-6 py-1'><span className="material-symbols-outlined" onClick={handleClick}>delete</span></td> 
+              {/* <td className='text-md px-6 py-1'><span  className="material-symbols-outlined span1" onClick={editClick}>edit</span></td>
+              <td className='text-md px-6 py-1'><span className="material-symbols-outlined" onClick={handleClick}>delete</span></td>  */}
           
           
             </tr>

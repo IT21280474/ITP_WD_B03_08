@@ -215,50 +215,52 @@ const Dashboard=()=>{
             <div >
             <div>
             <div className="flex flex-col px-5 pt-2">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className='items-center overflow-hidden'>
-                            <div class="grid grid-cols-1 gap-4 content-start">
-                                <table className=''>
+            
+    <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div className="items-center overflow-hidden">
+                <div className="grid grid-cols-1 gap-4 content-start">
+                    <table className="">
 
-                                    <tr>
-                                        <th className='drop-shadow-md'><h1>Student  List ----------- </h1></th>
-                                        <td className='flex justify-end gap-2'>
-                                            <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
-                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportStudents()}>Generate Report Students</button>
-                                            </div>
-                                            
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th className='drop-shadow-md'><h1>Teacher  List ----------- </h1></th>
-                                        <td className='flex justify-end gap-2'>
-                                            <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
-                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportTeachers()}>Generate Report Teachers</button>
-                                            </div>
-                                            
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th className='drop-shadow-md'><h1>Feedback  List -------------</h1></th>
-                                        <td className='flex justify-end gap-2'>
-                                            <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
-                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportFeedbacks()}>Generate Report Feedbacks</button>
-                                            </div>
-                                            
-
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            
-                    </div>
+                        <tr>
+                            <th className="shadow-md">
+                                <h1>Student List ----------- </h1>
+                            </th>
+                            <td className="flex justify-end gap-2">
+                            <div class="w-500 h-500 bg-gray-200">
+                                <div className="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
+                                    <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportStudents()}>Generate Report Students</button>
+                                </div></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="shadow-md">
+                                <h1>Teacher List ----------- </h1>
+                            </th>
+                            <td className="flex justify-end gap-2">
+                                <div className="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
+                                    <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportTeachers()}>Generate Report Teachers</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th className="shadow-md">
+                                <h1>Feedback List ---------</h1>
+                            </th>
+                            <td className="flex justify-end gap-2">
+                                <div className="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
+                                    <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportFeedbacks()}>Generate Report Feedbacks</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+
+        
             </div>
         </div></div>
 

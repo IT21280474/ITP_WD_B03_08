@@ -18,10 +18,10 @@ class navbar extends Component {
                       <div>
                        
                         <a href="/listFeedback" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Feedback List</a>
-                        
+                        <a href="/myFeedback" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">My Feedback List</a>
                         <a href="/adFeedback" className="m-2 text-black no-underline duration-300 hover:text-blue-800 hover:font-normal">Ad.Feedback List</a>
-                        
-                        
+                      
+
                       </div>
                     </>
                 

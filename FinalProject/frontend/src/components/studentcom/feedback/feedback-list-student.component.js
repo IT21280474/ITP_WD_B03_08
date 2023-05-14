@@ -88,17 +88,22 @@ export default function FeedbackListStudent() {
 
 
     const searchItems = (searchValue) => {
-        setSearchInput(searchValue)
-        if (searchInput !== '') {
-            const filteredData = APIData.filter((data) => {
-                return Object.values(data).join('').toLowerCase().includes(searchInput.toLowerCase())
-            })
-            setFilteredResults(filteredData)
+        const lowercaseSearchInput = searchValue.toLowerCase();
+        setSearchInput(lowercaseSearchInput);
+      
+        if (lowercaseSearchInput !== '') {
+          const filteredData = APIData.filter((data) => {
+            return Object.values(data)
+              .join('')
+              .toLowerCase()
+              .includes(lowercaseSearchInput);
+          });
+          setFilteredResults(filteredData);
+        } else {
+          setFilteredResults(APIData);
         }
-        else {
-            setFilteredResults(APIData)
-        }
-    }
+      };
+      
 
     const exportStudents = () => {
         console.log("Export PDF")
@@ -160,16 +165,16 @@ export default function FeedbackListStudent() {
                                                 <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportStudents()}>Generate Report</button>
                                             </div>
                                             <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end">
-                                                <input
-                                                    className="form-control rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-                                                    type="text"
-                                                    required
-                                                    
+                                                <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end">
+                                                    <input
+                                                        className="form-control rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
+                                                        type="text"
+                                                        required
+                                                        placeholder="Filter By Students"
+                                                        onChange={(e) => searchItems(e.target.value)}
+                                                    />
+                                                    </div>
 
-                                                    icon='search'
-                                                    placeholder='Filter By Students'
-                                                    onChange={(e) => searchItems(e.target.value)}
-                                                />
 
 
                                             </div>
@@ -194,7 +199,7 @@ export default function FeedbackListStudent() {
                                             <th className="p-2 tbhead">NIC</th>
                                             <th className="p-2 tbhead">userName</th>
                                             <th className="p-2 tbhead">address</th>
-                                            <th className="p-2 tbhead">dob</th>
+                                            {/* <th className="p-2 tbhead">dob</th> */}
                                             
                                             <th className="p-2 tbhead">mobile</th>
                                             
@@ -216,7 +221,7 @@ export default function FeedbackListStudent() {
                                                         <td className='px-6 py-4'>{data.NIC}</td>
                                                         <td className='px-6 py-4'>{data.userName}</td>
                                                         <td className='px-6 py-4'>{data.address}</td>
-                                                        <td className='px-6 py-4'>{data.dob}</td>
+                                                        {/* <td className='px-6 py-4'>{data.dob}</td> */}
                                                     
                                                         <td className='px-6 py-4'>{data.mobile}</td>
                                                         <td className='px-6 py-4'>

@@ -1,34 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
 import axios from 'axios';
 import Swal from "sweetalert2";
+import { useHistory } from 'react-router';
 import { Rating } from 'react-simple-star-rating'
 
+export default function EditFeedback() {
 
-
-export default function AddFeedback() {
-    const [rating, setRating] = useState(0);
     const [course, setCourse] = useState('');
     const [student, setStudent] = useState('');
     const [feedback, setFeedback] = useState('');
-    const [checkbox, setCheckbox] = useState(false);
+    const [response, setResponse] = useState('');
+    const [rating, setRating] = useState(0);
+    
 
-    const handleRating = (rate) => {
-        setRating(rate)
-        // Some logic
-    }
 
-    const postData = () => {
+    const [id, setID] = useState(null);
+
+    useEffect(() => {
+        console.log("Update feedback is" + localStorage.getItem('Feedback'));
+        setID(localStorage.getItem('ID'))
+        setCourse(localStorage.getItem('Course'));
+        setStudent(localStorage.getItem('Student'));
+        setRating(localStorage.getItem('Rating'));
+        setFeedback(localStorage.getItem('Feedback'));
+        setResponse(localStorage.getItem('Response'));
+        console.log("Update feedback id" + setID(localStorage.getItem('ID')));
+
+    }, []);
+
+    const updateAPIData = () => {
+
         const feedbacks = {
             course: course,
             student: student,
             rating: rating,
-            feedback: feedback
+            feedback: feedback,
+            response:response
         }
 
         console.log(feedbacks);
-
         if(course.length < 3){
             Swal.fire({
                 icon: 'warning',
@@ -41,7 +52,6 @@ export default function AddFeedback() {
                 closeOnConfirm: true,
                 
             })
-            
 
         }else if(student.length < 3){
             Swal.fire({
@@ -55,7 +65,6 @@ export default function AddFeedback() {
                 closeOnConfirm: false,
                 timer:2800000
             })
-            
         }else if(rating <= 0 || rating >5){
             Swal.fire({
                 icon: 'warning',
@@ -82,79 +91,61 @@ export default function AddFeedback() {
                 timer:2800000
             })
         }else{
-        axios.post('http://localhost:5000/feedback/',
-            feedbacks,
-
-        ).then(res => {
+        
+        axios.put(`/api/feedback/${id}`,feedbacks)
+        .then(res => {
 
             console.log(res);
 
             if (res.status === 200) {
-                // this.clearData();
+ 
                 Swal.fire({
                     icon: 'success',
                     title: 'Successful',
-                    text: 'Feedback has been added!!',
+                    text: 'Feedback has been Updated!!',
                     background: '#fff',
                     confirmButtonColor: '#333533',
-                    iconColor: '#60e004',
-                    timer:2800000
-                });
-
-
+                    iconColor: '#60e004'
+                })               
 
             } else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Error in adding!',
+                    text: 'Error in updating!',
                     background: '#fff',
                     confirmButtonColor: '#333533',
-                    iconColor: '#e00404',
-                    timer:2800000
+                    iconColor: '#e00404'
                 })
-
             }
-
-
-
         })
     }
-
-
     }
 
-
+    const handleRating = (rate) => {
+        setRating(rate)
+        // Some logic
+    }
 
     return (
-        <div className="flex flex-col px-5 pt-2 ">
-
-            <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+<div className="flex flex-col px-5 pt-2 ">
+<div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className='items-center overflow-hidden'>
                         <div className=''>
                             <div class="grid grid-cols-1 gap-4 content-start pt-5 px-20">
                                 <form className='px-12 py-12 border-2 rounded-lg shadow-md bg-gray-50' >
                                     <div class="">
-                                        <p className='text-4xl font-semibold text-black uppercase'>Add Feedback</p>
+                                        <p className='text-4xl font-semibold text-black uppercase'>Update Feedback</p>
                                         <div class="">
                                             <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Course</label>
-                                            <select
+                                            <input
                                                 type="text"
                                                 required
                                                 className="form-control "
+                                                value={course}
                                                 onChange={(e) => setCourse(e.target.value)}
-                                                
-                                            >
-                                                 <option>Select From Here</option>
-                                                <option>Artifical Intelligence</option>
-                                                <option>Software Architecture</option>
-                                                <option>Database Structures</option>
-                                                <option>Distributed Systems</option>
-                                                <option>Mobile Application Development</option>
-                                               
-                                            </select>
-
+                                            />
                                         </div>
                                         <div className="form-group">
                                             <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Student</label>
@@ -162,9 +153,9 @@ export default function AddFeedback() {
                                                 type="text"
                                                 required
                                                 className="form-control"
+                                                value={student}
                                                 onChange={(e) => setStudent(e.target.value)}
                                             />
-
                                         </div><p />
 
                                         <div className="grid grid-cols-2 gap-4 form-group">
@@ -185,7 +176,6 @@ export default function AddFeedback() {
                                                 // Will remove the inline style if applied
                                                 />{rating}
 
-                                                {/* <p className="validateMsg">{this.state.userContactError}</p> */}
 
                                             </div>
                                             <div class="">
@@ -193,15 +183,26 @@ export default function AddFeedback() {
                                                 <textarea type="text"
                                                     required
                                                     className="h-40 form-control"
+                                                    value={feedback}
                                                     onChange={(e) => setFeedback(e.target.value)}
                                                 />
-                                                {/* <p className="validateMsg">{this.state.empIDError}</p> */}
                                             </div>
                                         </div><p />
+                                        <div className="form-group">
+                                            <label className='block mb-2 text-lg font-medium text-gray-900 dark:text-white'>Response</label>
+                                            <input
+                                                type="text"
+                                                required
+                                                className="form-control"
+                                                readOnly
+                                                value={response}
+                                                onChange={(e) => setResponse(e.target.value)}
+                                            />
+                                        </div><p />
 
-                                        <div className="text-center align-middle form-group">
-                                            <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" value="Add Feedback" onClick={postData} />
-                                        </div>
+                                         <div className="text-center align-middle form-group">
+                                                <input className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800' type="submit" value="Update Feedback" onClick={updateAPIData} />
+                                            </div>
                                     </div>
                                 </form>
                             </div>

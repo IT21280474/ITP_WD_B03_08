@@ -5,12 +5,15 @@ const NavBar = ()=>{
     return (
             <header>
                 <div className="container">
-                <p><h1>ROVISTER <br/></h1><h2>LERANING MANAGEMENT SYSTEM</h2></p>
-                <a href="/"><h1>Home</h1></a>
-				<a href="/"><h1>My work</h1></a>
-				<a href="/"><h1>Blog</h1></a>
-				<a href="/"><h1>About me</h1></a>
-                <a href="/"><h1>Sign Up</h1></a>
+                <p><h3>ROVISTER <br/></h3></p>
+                <a href="/"><h3>Home</h3></a>
+				<a href="/"><h3>Student</h3></a>
+				<a href="/"><h3>Teacher</h3></a>
+                <a href="/"><h3>Courses</h3></a>
+                
+				<a href="/listFeedback"><h3>Feedback</h3></a>
+                <a href="/"><h3>Notification</h3></a> 
+                
                         <Link to="/dashboard"><BsFillGearFill/>Dashboard Page</Link>
                         
 

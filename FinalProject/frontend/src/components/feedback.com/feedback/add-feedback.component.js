@@ -82,7 +82,7 @@ export default function AddFeedback() {
                 timer:2800000
             })
         }else{
-        axios.post('http://localhost:5000/feedback/',
+        axios.post('/api/feedback/',
             feedbacks,
 
         ).then(res => {

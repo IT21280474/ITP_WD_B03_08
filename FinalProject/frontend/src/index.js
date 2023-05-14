@@ -5,8 +5,8 @@ import App from './App';
 import { WorkoutsContextProvider } from './context/workoutContext';
 import { StudentsContextProvider } from './context/studentContext/studentContext.js';
 import { TeachersContextProvider } from './context/teacherContext/teacherContext';
-import { CoursesContextProvider } from './context/courseContext/courseContext';
-
+// import { CoursesContextProvider } from './context/courseContext/courseContext';
+// import { AuthContextProvider } from './context/AuthContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,11 +17,10 @@ root.render(
       <TeachersContextProvider>
       
         <App />   
-        
-        </TeachersContextProvider>
+      </TeachersContextProvider>
       </StudentsContextProvider>
-    </WorkoutsContextProvider>
-
+    </WorkoutsContextProvider> 
+   
  
     
   </React.StrictMode>

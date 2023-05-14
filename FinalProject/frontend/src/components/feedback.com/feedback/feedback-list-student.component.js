@@ -8,18 +8,20 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 
-export default function FeedbackListAdmin() {
-   
+export default function FeedbackListStudent() {
+    
     const [searchInput, setSearchInput] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [APIData, setAPIData] = useState([]);
     const [feedbacks, setFeedbacks] = useState([]);
 
+    const userID = "Tom"
+
 
     useEffect(() => {
 
         
-        axios.get(`http://localhost:5000/feedback/`)
+        axios.get(`/api/feedback/`)
             .then((response) => {
                 setAPIData(response.data);
             })
@@ -27,14 +29,14 @@ export default function FeedbackListAdmin() {
 
 
     const getData = () => {
-        axios.get(`http://localhost:5000/feedback/`)
+        axios.get(`/api/feedback/`)
             .then((getData) => {
                 setAPIData(getData.data);
             })
     }
 
     const onDelete = (id) => {
-        axios.delete(`http://localhost:5000/feedback/${id}`).then(response => {
+        axios.delete(`/api/feedback/${id}`).then(response => {
             console.log(response.status)
             // this.refreshTable();
 
@@ -80,6 +82,7 @@ export default function FeedbackListAdmin() {
         console.log("List data is" + localStorage.setItem('Feedbak', feedback));
     }
 
+
     const searchItems = (searchValue) => {
         setSearchInput(searchValue)
         if (searchInput !== '') {
@@ -106,15 +109,19 @@ export default function FeedbackListAdmin() {
         const title = "Feedback List Report ";
         const headers = [["Course", "Student", "Ratings", "Feedback","Response"]];
 
-        const fed = APIData.map(
-            data => [
+        const fed = APIData.map(data => [
+                
                 data.course,
                 data.student,
                 data.rating,
                 data.feedback,
                 data.response
+                
             ]
+        
         );
+
+        
 
         let content = {
             startY: 50,
@@ -138,23 +145,14 @@ export default function FeedbackListAdmin() {
                                 <table className=''>
 
                                     <tr>
-                                        <th className='drop-shadow-md'><h1>Feedback List</h1></th>
+                                        <th className='drop-shadow-md'><h1>My Feedback List</h1></th>
                                         <td className='flex justify-end gap-2'>
                                             <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end gap-2">
-                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportFeedbacks()}><h4>Generate Report</h4></button>
-                                            </div>
-                                            <div class="flex justify-end sm:flex-row sm:text-left sm:justify-end">
-                                                <input
-                                                    className="form-control rounded-lg text-sm px-5 py-2.5 mr-2 mb-2"
-                                                    type="text"
-                                                    required
-
-                                                    icon='search'
-                                                    placeholder='Filter By Course'
-                                                    onChange={(e) => searchItems(e.target.value)}
-                                                />
-
-
+                                            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                    <Link className='font-semibold text-white no-underline' to={"/addFeedback"}>
+                                                        Add Feedback
+                                                    </Link></button>
+                                                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onClick={() => exportFeedbacks()}>Generate Report</button>
                                             </div>
 
                                         </td>
@@ -170,75 +168,21 @@ export default function FeedbackListAdmin() {
 
                                     <thead className='p-5 text-xs text-gray-700 uppercase border bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
                                         <tr>
-                                            <th className="p-2 border-black tbhead "><h3>Course</h3></th>
-                                            <th className="p-2 tbhead"><h3>Student</h3></th>
-                                            <th className="p-2 tbhead"><h3>Ratings</h3></th>
-                                            <th className="p-2 tbhead"><h3>Feedback</h3></th>
-                                            <th className="p-2 text-center tbhead"><h3>Response</h3></th>
-                                            <th className="p-2 text-center tbhead"><h3>Add Response</h3></th>
-                                            <th className="p-2 text-center tbhead"><h3>Delete</h3></th>
+                                            <th className="p-2 border-black tbhead ">Course</th>
+                                            <th className="p-2 tbhead">Student</th>
+                                            <th className="p-2 tbhead">Ratings</th>
+                                            <th className="p-2 tbhead">Feedback</th>
+                                            <th className="p-2 tbhead">Response</th>
+                                            <th className="p-2 text-center tbhead">Update</th>
+                                            <th className="p-2 text-center tbhead">Delete</th>
                                         </tr>
                                     </thead>
 
 
                                     <tbody>
-                                        {searchInput.length > 1 ? (
-                                            filteredResults.map((data) => { 
-                                               
-                                                if(searchInput == data.course){
-
-                                                return (
-                                                    <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
-                                                        <td className='px-6 py-4 text-sm'>{data.course}</td>
-                                                        <td className='px-6 py-4 text-sm'>{data.student}</td>
-                                                        <td className='px-6 py-4 text-sm'>{data.rating }</td>
-                                                        <td className='px-6 py-4 text-sm'>{data.feedback}</td>
-                                                        <td className='px-6 py-4 text-sm'>{data.response}</td>
-                                                      
-                                                        <td className='px-6 py-4'>
-                                                            <div class="flex justify-center">
-                                                                <div class="">
-
-                                                                    <Link to='/addResponse'><button className='inline-flex items-center px-4 py-2 ml-1 text-sm font-medium text-white duration-100 bg-green-500 rounded-md hover:bg-green-200' onClick={() => setData(data)}>
-                                                                        <div class=" grid grid-cols-2 gap-1 hover:text-black duration-100">
-                                                                            <div class="">
-                                                                                <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                                    <path stroke-linecap="round" stroke-linejoin="round " stroke-width="2" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="">
-                                                                                Reponse
-                                                                            </div>
-                                                                        </div>
-                                                                    </button></Link>
-                                                                </div></div></td>
-
-
-
-                                                        <td className='px-6 py-4'>
-                                                            <div class="flex justify-center">
-                                                                <div class="">
-
-                                                                    <button className='inline-flex items-center px-4 py-2 ml-1 text-sm font-medium text-white duration-100 bg-red-500 rounded-md hover:bg-red-200' onClick={() => onDelete(data._id)}>
-                                                                        <div class=" grid grid-cols-2 gap-1 hover:text-black duration-100">
-                                                                            <div class="">
-                                                                                <svg class="h-5 w-5 mr-2 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="">
-                                                                                Delete
-                                                                            </div>
-                                                                        </div>
-                                                                    </button>
-                                                                </div></div></td>
-
-                                                    </tr>
-                                                )
-                                                }
-                                            })
-                                        ) : (
-                                            APIData.map((data) => {
+                                        
+                                           { APIData.map((data) => {
+                                                if(data.student == userID){
                                                 return (
                                                     <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>
                                                         <td className='px-6 py-4'>{data.course}</td>
@@ -250,7 +194,7 @@ export default function FeedbackListAdmin() {
                                                             <div class="flex justify-center">
                                                                 <div class="">
 
-                                                                    <Link to='/addResponse'><button className='inline-flex items-center px-4 py-2 ml-1 text-sm font-medium text-white duration-100 bg-green-500 rounded-md hover:bg-green-200' onClick={() => setData(data)}>
+                                                                    <Link to='/updateFeedback'><button className='inline-flex items-center px-4 py-2 ml-1 text-sm font-medium text-white duration-100 bg-indigo-500 rounded-md hover:bg-blue-200' onClick={() => setData(data)}>
                                                                         <div class=" grid grid-cols-2 gap-1 hover:text-black duration-100">
                                                                             <div class="">
                                                                                 <svg class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -258,11 +202,12 @@ export default function FeedbackListAdmin() {
                                                                                 </svg>
                                                                             </div>
                                                                             <div class="">
-                                                                                Add Reponse
+                                                                                Update
                                                                             </div>
                                                                         </div>
                                                                     </button></Link>
                                                                 </div></div></td>
+
 
 
                                                         <td className='px-6 py-4'>
@@ -283,9 +228,11 @@ export default function FeedbackListAdmin() {
                                                                     </button>
                                                                 </div></div></td>
 
+
                                                     </tr>
                                                 )
-                                            })
+                                                }
+                                            }
                                         )}
                                     </tbody>
 
