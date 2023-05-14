@@ -1,0 +1,154 @@
+/*googel font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+/* layout*/
+:root{
+  --primary:#0501fb;
+  --error:#ff0256;
+}
+body{
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+header{
+  background: #080000;
+  
+  
+}
+header .container{
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}header a{
+  color: #ffffff;
+  text-decoration: none;
+
+}
+header h1{
+  color: aliceblue;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+/* Home Page */
+.home{
+  display: grid;
+  gap:1px;
+}
+.course-details{
+  
+  grid-template-columns: repeat(4, 100px);
+  grid-auto-rows: 100px;
+  background: #ffffff;
+  border-radius: 4px;
+  margin: 20px ;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  
+}
+.course-details h4{
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.course-details p{
+  margin:0;
+  font-size: 0.9em;
+  color: #555;
+}
+.course-details span{
+  position: relative;
+  top: 50px;
+  right: 20px;
+  cursor: pointer;
+  background: #1aef07;
+  padding: 6px;
+  color: #000000;
+
+}
+.course-details button{
+  position: relative;
+  top: 17px;
+  left: 80px;
+  cursor: pointer;
+  background: #1aef07;
+  padding: 6px;
+  color: #000000;
+
+}
+/* new course form */
+.course-details{
+  background-color: #e2eee4;
+  width: 200px;
+  grid-template-rows: auto auto auto;
+
+}
+
+
+  
+
+label,input{
+  display: block;
+  font-size: 20px;
+}
+input{
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button{
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+div.error{
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+input.error {
+  border: 1px solid var(--error);
+}
+.material-symbols-outlined1{
+  margin-top: 60px;
+  border-radius: 10px;
+}
+.material-symbols-outlined{
+  border-radius: 50%;
+}
+.checkout-button{
+  background: #0501fb;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 1200px;
+  color: #ffffff;
+}
+.checkout-button:hover{
+  background: red;
+}
+textarea{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
