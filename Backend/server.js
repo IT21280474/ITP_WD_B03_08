@@ -1,43 +1,34 @@
-require('dotenv').config();
-// const cors = require('cors');
+require('dotenv').config()
 
-const express = require('express');
-const mongoose = require('mongoose');
-const workoutRouters =require("./routes/Dashboard/workouts")
-const studentRouters = require("./routes/Dashboard/students")
-const teacherRouters = require("./routes/Dashboard/teacher")
-// const feedbackRouter = require('./routes/feedback');
-const courseRouters = require("./routes/courses")
-const DashboarduserRoutes = require('./routes/Dashboard/user')
-//express app
+const express =require('express')
+const mongoose = require('mongoose')
+const notificationRoutes = require('./routes/notifications')
+
+
+//express app 
 const app = express()
-// app.use(cors());
+
+//middleware
 app.use(express.json())
 
-app.use((req,res,next)=>{
-    console.log(req.path,req.method)
+app.use((req,res,next)=> {
+    console.log(req.path, req.method)
     next()
 })
 
-//router routes
-app.use('/api/workouts',workoutRouters)
-app.use('/api/students',studentRouters)
-app.use('/api/teachers',teacherRouters)
-app.use('/api/Dashboarduser', DashboarduserRoutes)
-// app.use('/api/feedback', feedbackRouter);
-app.use('/api/courses',courseRouters)
+//routes
+app.use('/api/notifications',notificationRoutes)
 
-//connect db
-mongoose.connect(process.env.MONGO_URL)
-.then(()=>{
-    //listen for app
-        app.listen(process.env.PORT, ()=>{
-            console.log('Connect DB & Listening on port',process.env.PORT);
+
+//connect to the database
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        //listen for requests
+        app.listen(process.env.PORT, () => {
+        console.log('connected to db & listening on port', process.env.PORT)
         })
-}).catch((error)=>{
-    console.log(error)
-})
-
-
-
-
+    })
+    .catch((error) => {
+        console.log(error)
+    })
