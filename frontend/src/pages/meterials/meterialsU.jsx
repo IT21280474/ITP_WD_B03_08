@@ -6,7 +6,7 @@ import { Form } from "react-bootstrap";
 //components
 import MeterialDetails from "../../components/MeterialDetailsUser";
 
-export const Meterials = () => {
+export const Meterialuser = () => {
   const { meterials, dispatch } = useMeterialsContext();
   const [query, setQuery] = useState("");
 

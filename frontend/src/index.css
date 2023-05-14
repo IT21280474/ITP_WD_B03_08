@@ -39,15 +39,16 @@ header h1{
 /* Home Page */
 .home{
   display: grid;
+  grid-template-columns: 3ft 1fr;
   gap:1px;
 }
 .course-details{
   
-  grid-template-columns: repeat(4, 100px);
-  grid-auto-rows: 100px;
   background: #ffffff;
-  border-radius: 4px;
-  margin: 20px ;
+
+    
+  border-radius: 6px;
+  margin: 25px 0 0 0 ;
   padding: 20px;
   position: relative;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
@@ -55,12 +56,12 @@ header h1{
 }
 .course-details h4{
   margin: 0 0 10px 0;
-  font-size: 1.2em;
+  font-size: 1.4em;
   color: var(--primary);
 }
 .course-details p{
   margin:0;
-  font-size: 0.9em;
+  font-size: 1em;
   color: #555;
 }
 .course-details span{
@@ -70,6 +71,7 @@ header h1{
   cursor: pointer;
   background: #1aef07;
   padding: 6px;
+  border-color: #000000;
   color: #000000;
 
 }
@@ -90,9 +92,6 @@ header h1{
   grid-template-rows: auto auto auto;
 
 }
-
-
-  
 
 label,input{
   display: block;
@@ -151,4 +150,34 @@ textarea{
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+}
+/*Notification*/
+.notification-details{
+  background: #fff;
+  border-radius: 4px;
+  margin: 20px 0 0 0;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+.notification-details h4{
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.notification-details p{
+  margin:0;
+  font-size: 0.9em;
+  color: #555;
+}
+.notification-details span{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+
 }

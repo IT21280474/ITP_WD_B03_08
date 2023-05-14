@@ -14,11 +14,21 @@ const Navbar = () => {
             <Link to="/courses">
                 Courses
             </Link>
-            <Link to="/wishlist">
-                Wishlist
-            </Link>
+            
             <Link to="/meterial">
                 Meterial
+            </Link>
+            <Link to="/meterialsU">
+                Meterial User
+            </Link>
+            <Link to="/notification">
+                     Notification
+            </Link>
+            <Link to="/notificationsU">
+                     Notification User
+            </Link>
+            <Link to="/wishlist">
+                Wishlist
             </Link>
             <Link to="/cart">
                 <ShoppingCart size={32}/>
