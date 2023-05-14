@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useCoursesContext } from "../../hooks/useCoursesContext";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+import jsPDF from "jspdf";
 
-//components
+// Components
 import CourseDetails from "../../components/CourseDetailsUser";
 
 export const Courses = () => {
@@ -20,7 +21,49 @@ export const Courses = () => {
       }
     };
     fetchCourses();
-  });
+  }, [dispatch]);
+
+  const generateReport = () => {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
+  
+    // Add the company name
+    const companyName = "INSTITUTE OF ROVISTA";
+    doc.setFontSize(18);
+    doc.text(companyName, 10, 10);
+  
+    // Add the current date and time
+    const today = new Date();
+    const date = today.toLocaleDateString();
+    const time = today.toLocaleTimeString();
+  
+    doc.setFontSize(12);
+    doc.text(`Report generated on: ${date} at ${time}`, 10, 20);
+  
+    // Generate the table data
+    const tableData = courses
+      .filter((course) =>
+        course.title?.toLowerCase().includes(query.toLowerCase())
+      )
+      .map((course, index) => [
+        index + 1,
+        course.title,
+        course.duration,
+        course.level,
+        course.price
+      ]);
+  
+    // Add the table to the PDF
+    doc.autoTable({
+      head: [["No", "Title", "Duration", "Level", "Price"]],
+      body: tableData,
+      startY: 30
+    });
+  
+    // Save the PDF
+    doc.save("report.pdf");
+  };
+  
 
   return (
     <>
@@ -31,6 +74,7 @@ export const Courses = () => {
         type="search"
         onChange={(e) => setQuery(e.target.value)}
       />
+      <Button onClick={generateReport}>Generate Report</Button>
       <div className="home">
         <div className="courses">
           {courses &&

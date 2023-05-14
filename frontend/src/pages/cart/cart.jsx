@@ -101,10 +101,11 @@ function Cart() {
       </Table>
       <h2>Total: $ {getTotal().toFixed(2)}</h2>
       <br />
-      <button className="checkout-button">CHECKOUT</button>
+      
       <button className="btn btn-primary" onClick={() => generatePDF()}>
         Generate Report
       </button>
+      <button className="checkout-button">CHECKOUT</button>
     </>
   );
 }

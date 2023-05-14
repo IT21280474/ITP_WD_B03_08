@@ -66,13 +66,22 @@ const CourseForm = () => {
         className={emptyFields.includes('duration') ? 'error' : ''}
       />
 
-      <label>Day:</label>
-      <input
-        type="text"
-        onChange={(e) => setDay(e.target.value)}
-        value={day}
-        className={emptyFields.includes('day') ? 'error' : ''}
-      />
+<label>Day    :  </label>
+<select
+  onChange={(e) => setDay(e.target.value)}
+  value={day}
+  className={emptyFields.includes('day') ? 'error' : ''}
+>
+  <option value="">Select a day</option>
+  <option value="Monday">Monday</option>
+  <option value="Tuesday">Tuesday</option>
+  <option value="Wednesday">Wednesday</option>
+  <option value="Thursday">Thursday</option>
+  <option value="Friday">Friday</option>
+  <option value="Saturday">Saturday</option>
+  <option value="Sunday">Sunday</option>
+</select>
+<br/>
       <label>Price ($):</label>
       <input
         type="number"

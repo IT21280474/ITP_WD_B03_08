@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <header>
         <div className="container">
-        <h1>Online Learning Management System</h1>
+        <h1>ROVISTA</h1>
             <Link to="/">
                 Home
             </Link>
