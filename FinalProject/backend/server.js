@@ -6,9 +6,9 @@ const mongoose = require('mongoose');
 const workoutRouters =require("./routes/Dashboard/workouts")
 const studentRouters = require("./routes/Dashboard/students")
 const teacherRouters = require("./routes/Dashboard/teacher")
-// const feedbackRouter = require('./routes/feedback');
+const feedbackRouter = require('./routes/feedback');
 const courseRouters = require("./routes/courses")
-
+const DashboarduserRoutes = require('./routes/Dashboard/user')
 //express app
 const app = express()
 // app.use(cors());
@@ -23,7 +23,8 @@ app.use((req,res,next)=>{
 app.use('/api/workouts',workoutRouters)
 app.use('/api/students',studentRouters)
 app.use('/api/teachers',teacherRouters)
-// app.use('/api/feedback', feedbackRouter);
+app.use('/api/Dashboarduser', DashboarduserRoutes)
+app.use('/api/feedback', feedbackRouter);
 app.use('/api/courses',courseRouters)
 
 //connect db

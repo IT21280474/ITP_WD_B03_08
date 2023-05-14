@@ -22,6 +22,6 @@ const {
 
   router.put("/response/:id", addResponse);
 
-  router.delete("/:id", deleteFeedback);
+  router.delete("/:id", deleteFeedback)
 
 module.exports = router;
