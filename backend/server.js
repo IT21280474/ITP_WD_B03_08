@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(router);
 
 // const url="mongodb+srv://admin:4LPZudtJGHHLK2Xx@cluster0.5qu8lrg.mongodb.net/?retryWrites=true&w=majority"
-const url2="mongodb+srv://sandaruduhun:duhun12345@payment.qjrigph.mongodb.net/?retryWrites=true&w=majority"
+const url2="mongodb://127.0.0.1:27017"
 
 mongoose.connect(url2).then(()=>{
     console.log("Database connection successful")
@@ -71,7 +71,7 @@ app.post('/payment', function(req, res){
 		}); 
 	}) 
 	.then((charge) => { 
-		res.redirect(`http://localhost:3000/`) // If no error occurs 
+		res.redirect(`http://localhost:3000/success`) // If no error occurs 
 	}) 
 	.catch((err) => { 
 		res.send(err)	 // If some error occurs 
