@@ -1,0 +1,69 @@
+
+.glass{
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px #4747470b;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 1vw auto;
+    padding: 1vw auto;
+
+    @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 ;
+}
+input[type=text] {
+    border: none;
+    border-bottom: 2px solid red;
+  }
+.profile_img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile_img:hover{
+    border-color:gray ;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    background-color: DodgerBlue;
+  }
+  
+  .flex-container > div {
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+.textbox01{
+    outline: none;
+    border: none;
+    border-bottom: 2px solid red;
+
+}
+.textbox:hover{
+    border-color:gray ;
+}
+.btn{
+    background-color: blanchedalmond;
+    padding: 10px 50px;
+    font-size: large;
+    font-weight: 500;
+}
+
+.btn:hover{
+    background-color: rgb(216, 140, 140);
+}
+
+input[type='file']{
+    display: none;
+}
+
+    
+
+
+
+
+   
+
